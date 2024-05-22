@@ -1,0 +1,19 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: kbot-telegram
+  namespace: demo
+spec:
+  interval: 10m
+  chart:
+    spec:
+      chart: ./helm
+      reconcileStrategy: ChartVersion
+      sourceRef:
+        kind: GitRepository
+        name: kbot-telegram
+        namespace: demo
+      interval: 10m
+  values:
+    replicaCount: 1
